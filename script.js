@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('contact-form');
   const status = document.getElementById('form-status');
   if (form) {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const name = document.getElementById('name').value.trim();
       const email = document.getElementById('email').value.trim();
@@ -24,9 +24,30 @@ document.addEventListener('DOMContentLoaded', function () {
         status.textContent = 'Please complete all fields.';
         return;
       }
-      // Replace this with real backend or service integration (Formspree, Netlify Forms, etc.)
-      status.textContent = 'Thanks — your message was received (demo).';
-      form.reset();
+      const submitBtn = form.querySelector('button[type="submit"]');
+      try {
+        if (submitBtn) submitBtn.disabled = true;
+        status.textContent = 'Sending...';
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, message })
+        });
+        if (!res.ok) {
+          const text = await res.text();
+          status.textContent = 'Error sending message.';
+          console.error('Contact error:', res.status, text);
+          return;
+        }
+        const data = await res.json();
+        status.textContent = data.message || 'Thanks — your message was received.';
+        form.reset();
+      } catch (err) {
+        console.error(err);
+        status.textContent = 'Network error. Please try again later.';
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
+      }
     });
   }
 });

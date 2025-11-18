@@ -1,0 +1,14 @@
+2025-11-18 23:31:53,190 [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.0.3.94:5000
+2025-11-18 23:31:53,191 [33mPress CTRL+C to quit[0m
+2025-11-18 23:31:53,191  * Restarting with stat
+2025-11-18 23:31:53,342  * Debugger is active!
+2025-11-18 23:31:53,349  * Debugger PIN: 959-311-494
+2025-11-18 23:32:17,406 127.0.0.1 - - [18/Nov/2025 23:32:17] "GET / HTTP/1.1" 200 -
+2025-11-18 23:32:17,609 127.0.0.1 - - [18/Nov/2025 23:32:17] "GET /styles.css HTTP/1.1" 200 -
+2025-11-18 23:32:17,639 127.0.0.1 - - [18/Nov/2025 23:32:17] "GET /script.js HTTP/1.1" 200 -
+2025-11-18 23:32:17,791 127.0.0.1 - - [18/Nov/2025 23:32:17] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-11-18 23:32:30,416 Contact from teste <teste>: teste
+2025-11-18 23:32:30,417 127.0.0.1 - - [18/Nov/2025 23:32:30] "POST /api/contact HTTP/1.1" 200 -
